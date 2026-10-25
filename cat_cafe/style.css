@@ -1,0 +1,118 @@
+/* style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f3f0; /* Soft cafe/cream color */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: #5c3a21; /* Coffee brown */
+    border-bottom: 2px solid #e0d6ce;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #d97736; /* Orange accent */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #5c3a21;
+    color: #fff;
+    text-align: left;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e0d6ce;
+}
+
+tr:hover {
+    background-color: #fdfaf8;
+}
+
+/* Form Styling */
+form {
+    margin-top: 20px;
+    max-width: 400px;
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #d97736;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #b8612a;
+}
+
+.action-links a {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.top-nav {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+}
+/* Welcome Banner Styling */
+.welcome-banner {
+    background: linear-gradient(135deg, #d97736 0%, #b8612a 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.welcome-banner h1 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    color: #fff;
+}
+
+.welcome-banner p {
+    margin: 0;
+    font-size: 16px;
+    opacity: 0.9;
+}
