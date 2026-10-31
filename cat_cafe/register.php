@@ -21,33 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* CSS for the Eye Icon */
-        .password-wrapper { position: relative; width: 100%; }
-        .password-wrapper input { padding-right: 40px; } 
-        .toggle-password {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            cursor: pointer; color: #888; font-size: 18px; user-select: none;
-        }
-        .toggle-password:hover { color: #d97736; }
-    </style>
-</head>
+<head><title>Register</title><link rel="stylesheet" href="style.css"></head>
 <body>
     <div class="container">
         <h2>Register New User</h2>
         <?= $message ?>
         <form method="POST">
-            <label>First Name:</label> 
-            <input type="text" name="first_name" required>
-            
-            <label>Last Name:</label> 
-            <input type="text" name="last_name" required>
-            
-            <label>Username:</label> 
-            <input type="text" name="username" required>
+            <label>First Name:</label> <input type="text" name="first_name" required>
+            <label>Last Name:</label> <input type="text" name="last_name" required>
+            <label>Username:</label> <input type="text" name="username" required>
             
             <label>Password:</label>
             <div class="password-wrapper">
@@ -55,28 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <span class="toggle-password" onclick="togglePassword('regPass', this)">👁️</span>
             </div>
             
-            <label>Age:</label> 
-            <input type="number" name="age">
-            
-            <label>Address:</label> 
-            <input type="text" name="address">
-            
+            <label>Age:</label> <input type="number" name="age">
+            <label>Address:</label> <input type="text" name="address">
             <button type="submit">Register</button>
         </form>
         <br><a href="login.php">Already have an account? Login here.</a>
     </div>
-
-    <!-- JavaScript for the Eye Icon -->
     <script>
         function togglePassword(inputId, icon) {
             const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.innerHTML = "🙈"; 
-            } else {
-                input.type = "password";
-                icon.innerHTML = "👁️"; 
-            }
+            if (input.type === "password") { input.type = "text"; icon.innerHTML = "🙈"; } 
+            else { input.type = "password"; icon.innerHTML = "👁️"; }
         }
     </script>
 </body>

@@ -24,27 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        
-        .password-wrapper { position: relative; width: 100%; }
-        .password-wrapper input { padding-right: 40px; } 
-        .toggle-password {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            cursor: pointer; color: #888; font-size: 18px; user-select: none;
-        }
-        .toggle-password:hover { color: #d97736; }
-    </style>
-</head>
+<head><title>Login</title><link rel="stylesheet" href="style.css"></head>
 <body>
     <div class="container">
         <h2>Login</h2>
         <?= $error ?>
         <form method="POST">
-            <label>Username:</label> 
-            <input type="text" name="username" required>
+            <label>Username:</label> <input type="text" name="username" required>
             
             <label>Password:</label>
             <div class="password-wrapper">
@@ -56,18 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
         <br><a href="register.php">Don't have an account? Register here.</a>
     </div>
-
-    <!-- Hide password -->
     <script>
         function togglePassword(inputId, icon) {
             const input = document.getElementById(inputId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.innerHTML = "🙈"; 
-            } else {
-                input.type = "password";
-                icon.innerHTML = "👁️"; // 
-            }
+            if (input.type === "password") { input.type = "text"; icon.innerHTML = "🙈"; } 
+            else { input.type = "password"; icon.innerHTML = "👁️"; }
         }
     </script>
 </body>

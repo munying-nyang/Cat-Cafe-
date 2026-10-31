@@ -17,15 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h2>Add New Customer</h2>
         <form method="POST">
-            <label>Full Name:</label> 
-            <input type="text" name="full_name" required>
-            
-            <label>Email:</label> 
-            <input type="email" name="email" required placeholder="example@email.com" title="Please include an @ symbol">
-            
+            <label>Full Name:</label> <input type="text" name="full_name" required>
+            <label>Email:</label> <input type="email" name="email" required>
             <label>Phone Number:</label> 
-            <input type="text" name="phone_number" required pattern="[0-9]{11}" maxlength="11" minlength="11" title="Please enter exactly 11 digits." placeholder="e.g., 09123456789">
-            
+            <input type="text" name="phone_number" required pattern="[0-9]{11}" maxlength="11" title="11 digits only">
             <button type="submit">Save Customer</button>
         </form>
         <br><a href="index.php">&larr; Back to List</a>

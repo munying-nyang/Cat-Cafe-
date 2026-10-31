@@ -1,17 +1,11 @@
 <?php 
 session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit(); }
 require 'db.php'; 
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Munying-Nyang Cat Cafe</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<head><title>Munying-Nyang Cat Cafe</title><link rel="stylesheet" href="style.css"></head>
 <body>
     <div class="container">
         <div class="welcome-banner">
@@ -20,14 +14,9 @@ require 'db.php';
         </div>
 
         <h2>Customer List</h2>
-        <div class="top-nav">
-            <a href="add_customer.php">+ Add New Customer</a>
-        </div>
+        <div class="top-nav"><a href="add_customer.php">+ Add New Customer</a></div>
         <table>
-            <tr>
-                <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
-                <th>Added By</th><th>Last Updated</th><th>Actions</th>
-            </tr>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Added/Updated By</th><th>Last Updated</th><th>Actions</th></tr>
             <?php
             $stmt = $pdo->query("SELECT * FROM cat_cafe_customers");
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -41,7 +30,7 @@ require 'db.php';
                         <td class='action-links'>
                             <a href='view_reservations.php?customer_id={$row['customer_id']}'>View Reservations</a> 
                             <a href='edit_customer.php?id={$row['customer_id']}'>Edit</a> 
-                            <a href='delete.php?type=customer&id={$row['customer_id']}' onclick=\"return confirm('Are you sure you want to delete this customer? All their reservations will also be deleted.');\">Delete</a>
+                            <a href='delete.php?type=customer&id={$row['customer_id']}' onclick=\"return confirm('Delete this customer?');\">Delete</a>
                         </td>
                       </tr>";
             }

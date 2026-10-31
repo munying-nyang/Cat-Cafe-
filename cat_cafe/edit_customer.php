@@ -5,8 +5,9 @@ require 'db.php';
 $id = $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $stmt = $pdo->prepare("UPDATE cat_cafe_customers SET full_name=?, email=?, phone_number=? WHERE customer_id=?");
-    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $id]);
+    // OVERWRITES added_by with the current user's username
+    $stmt = $pdo->prepare("UPDATE cat_cafe_customers SET full_name=?, email=?, phone_number=?, added_by=? WHERE customer_id=?");
+    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $_SESSION['username'], $id]);
     header("Location: index.php");
     exit();
 }
@@ -22,15 +23,9 @@ $user = $stmt->fetch();
     <div class="container">
         <h2>Edit Customer</h2>
         <form method="POST">
-            <label>Full Name:</label> 
-            <input type="text" name="full_name" value="<?= htmlspecialchars($user['full_name']) ?>" required>
-            
-            <label>Email:</label> 
-            <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
-            
-            <label>Phone Number:</label> 
-            <input type="text" name="phone_number" value="<?= htmlspecialchars($user['phone_number']) ?>" required pattern="[0-9]{11}" maxlength="11" minlength="11">
-            
+            <label>Full Name:</label> <input type="text" name="full_name" value="<?= htmlspecialchars($user['full_name']) ?>" required>
+            <label>Email:</label> <input type="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" required>
+            <label>Phone Number:</label> <input type="text" name="phone_number" value="<?= htmlspecialchars($user['phone_number']) ?>" required pattern="[0-9]{11}" maxlength="11">
             <button type="submit">Update Customer</button>
         </form>
         <br><a href="index.php">&larr; Back to List</a>
