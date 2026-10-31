@@ -1,5 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit(); }
 require 'db.php';
+
 $customer_id = $_GET['customer_id'];
 $stmt = $pdo->prepare("SELECT full_name FROM cat_cafe_customers WHERE customer_id = ?");
 $stmt->execute([$customer_id]);
@@ -7,19 +10,17 @@ $customer = $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Reservations</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+<head><title>Reservations</title><link rel="stylesheet" href="style.css"></head>
 <body>
     <div class="container">
-        <h2>Reservations for: <?= htmlspecialchars($customer['full_name']) ?> </h2>
+        <h2>Reservations for: <?= htmlspecialchars($customer['full_name']) ?></h2>
+        
         <div class="top-nav">
             <a href="index.php">&larr; Back to Customers</a> | 
             <a href="add_reservation.php?customer_id=<?= $customer_id ?>">+ Add New Reservation</a>
         </div>
         <table>
-            <tr><th>ID</th><th>Date</th><th>Guests</th><th>Notes</th><th>Actions</th></tr>
+            <tr><th>ID</th><th>Date</th><th>Guests</th><th>Notes</th><th>Added By</th><th>Last Updated</th><th>Actions</th></tr>
             <?php
             $stmt = $pdo->prepare("SELECT * FROM cat_cafe_reservations WHERE customer_id = ?");
             $stmt->execute([$customer_id]);
@@ -29,6 +30,8 @@ $customer = $stmt->fetch();
                         <td>{$row['reservation_date']}</td>
                         <td>{$row['number_of_guest']}</td>
                         <td>{$row['notes']}</td>
+                        <td>{$row['added_by']}</td>
+                        <td>{$row['last_updated']}</td>
                         <td class='action-links'>
                             <a href='edit_reservation.php?id={$row['reservation_id']}'>Edit</a> 
                             <a href='delete.php?type=reservation&id={$row['reservation_id']}&customer_id={$customer_id}' onclick=\"return confirm('Are you sure you want to delete this reservation?');\">Delete</a>

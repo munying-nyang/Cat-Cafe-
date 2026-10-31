@@ -1,14 +1,14 @@
-/* style.css */
+/* Base Styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f3f0; /* Soft cafe/cream color */
+    background-color: #f7f3f0;
     color: #333;
     margin: 0;
     padding: 20px;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     background: #fff;
     padding: 30px;
@@ -17,13 +17,14 @@ body {
 }
 
 h2 {
-    color: #5c3a21; /* Coffee brown */
+    color: #5c3a21;
     border-bottom: 2px solid #e0d6ce;
     padding-bottom: 10px;
+    margin-top: 30px;
 }
 
 a {
-    color: #d97736; /* Orange accent */
+    color: #d97736;
     text-decoration: none;
     font-weight: bold;
 }
@@ -32,6 +33,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -54,16 +56,30 @@ tr:hover {
     background-color: #fdfaf8;
 }
 
-/* Form Styling */
-form {
-    margin-top: 20px;
-    max-width: 400px;
+/* Action Links */
+.action-links a {
+    margin-right: 10px;
+    font-size: 14px;
 }
 
-input[type="text"], input[type="email"], input[type="date"], input[type="number"] {
+/* Forms */
+form {
+    margin-top: 20px;
+    max-width: 500px;
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #5c3a21;
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="number"], input[type="password"] {
     width: 100%;
     padding: 10px;
-    margin: 8px 0 20px 0;
+    margin-top: 5px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
@@ -84,17 +100,14 @@ button:hover {
     background-color: #b8612a;
 }
 
-.action-links a {
-    margin-right: 10px;
-    font-size: 14px;
-}
-
+/* Navigation */
 .top-nav {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px dashed #ccc;
 }
-/* Welcome Banner Styling */
+
+/* Welcome Banner */
 .welcome-banner {
     background: linear-gradient(135deg, #d97736 0%, #b8612a 100%);
     color: white;
@@ -103,16 +116,60 @@ button:hover {
     margin-bottom: 30px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    position: relative;
 }
 
 .welcome-banner h1 {
-    margin: 0 0 10px 0;
+    margin: 0;
     font-size: 28px;
     color: #fff;
 }
 
 .welcome-banner p {
-    margin: 0;
-    font-size: 16px;
-    opacity: 0.9;
+    margin-top: 15px;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.welcome-banner a {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: background 0.3s;
+}
+
+.welcome-banner a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+}
+
+/* Tracking Columns */
+td:nth-child(5), td:nth-child(6) {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Success/Error Messages */
+div[style*="color:red"] {
+    background-color: #f8d7da;
+    color: #721c24 !important;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+}
+
+div[style*="color:green"] {
+    background-color: #d4edda;
+    color: #155724 !important;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
 }

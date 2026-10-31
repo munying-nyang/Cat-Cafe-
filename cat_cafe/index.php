@@ -1,32 +1,32 @@
-<?php require 'db.php'; ?>
+<?php 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+require 'db.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Munying-Nyang Cat Cafe - Customers</title>
+    <title>Munying-Nyang Cat Cafe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        
-        <!-- Welcome Banner -->
         <div class="welcome-banner">
-            <h1>Welcome to Munying-Nyang Cat Cafe! </h1>
-            <p>Manage our lovely customers and their visit reservations below.</p>
+            <h1>Welcome to Munying-Nyang Cat Cafe! 🐾</h1>
+            <p>Logged in as: <strong><?= htmlspecialchars($_SESSION['full_name']) ?></strong> | <a href="logout.php">Logout</a></p>
         </div>
 
         <h2>Customer List</h2>
-        
         <div class="top-nav">
             <a href="add_customer.php">+ Add New Customer</a>
         </div>
-
         <table>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Actions</th>
+                <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
+                <th>Added By</th><th>Last Updated</th><th>Actions</th>
             </tr>
             <?php
             $stmt = $pdo->query("SELECT * FROM cat_cafe_customers");
@@ -36,6 +36,8 @@
                         <td>{$row['full_name']}</td>
                         <td>{$row['email']}</td>
                         <td>{$row['phone_number']}</td>
+                        <td>{$row['added_by']}</td>
+                        <td>{$row['last_updated']}</td>
                         <td class='action-links'>
                             <a href='view_reservations.php?customer_id={$row['customer_id']}'>View Reservations</a> 
                             <a href='edit_customer.php?id={$row['customer_id']}'>Edit</a> 
@@ -45,7 +47,6 @@
             }
             ?>
         </table>
-        
     </div>
 </body>
 </html>
