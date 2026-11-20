@@ -6,17 +6,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $first = $_POST['first_name'];
     $last = $_POST['last_name'];
     $user = $_POST['username'];
-    $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $raw_password = $_POST['password']; // Changed to get raw password for validation
     $age = $_POST['age'];
     $address = $_POST['address'];
 
-    try {
-        $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, password, age, address) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$first, $last, $user, $pass, $age, $address]);
-        $message = "<div style='color:green;'>Registration successful! <a href='login.php'>Login here</a></div>";
-    } catch(PDOException $e) {
-        $message = "<div style='color:red;'>Username already exists!</div>";
+    // check passwords
+    
+    // if valid password
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/', $raw_password)) {
+        $message = "<div style='color:red;'>Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.</div>";
+    } else {
+        // hash
+        $pass = password_hash($raw_password, PASSWORD_DEFAULT);
+
+        try {
+            $stmt = $pdo->prepare("INSERT INTO users (first_name, last_name, username, password, age, address) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$first, $last, $user, $pass, $age, $address]);
+            $message = "<div style='color:green;'>Registration successful! <a href='login.php'>Login here</a></div>";
+        } catch(PDOException $e) {
+            $message = "<div style='color:red;'>Username already exists!</div>";
+        }
     }
+    
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             <label>Password:</label>
             <div class="password-wrapper">
-                <input type="password" name="password" id="regPass" required>
+                <input type="password" name="password" id="regPass" required 
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                       title="Must contain at least one number, one uppercase and lowercase letter, and at least 8 characters">
                 <span class="toggle-password" onclick="togglePassword('regPass', this)">👁️</span>
             </div>
             

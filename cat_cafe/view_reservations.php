@@ -29,7 +29,7 @@ $customer = $stmt->fetch();
                         <td>{$row['reservation_id']}</td>
                         <td>{$row['reservation_date']}</td>
                         <td>{$row['number_of_guest']}</td>
-                        <td>{$row['notes']}</td>
+                        <td>" . htmlspecialchars($row['notes']) . "</td>
                         <td>{$row['added_by']}</td>
                         <td>{$row['last_updated']}</td>
                         <td class='action-links'>

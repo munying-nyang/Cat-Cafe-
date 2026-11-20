@@ -22,9 +22,9 @@ require 'db.php';
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>
                         <td>{$row['customer_id']}</td>
-                        <td>{$row['full_name']}</td>
-                        <td>{$row['email']}</td>
-                        <td>{$row['phone_number']}</td>
+                        <td>" . htmlspecialchars($row['full_name']) . "</td>
+                        <td>" . htmlspecialchars($row['email']) . "</td>
+                        <td>" . htmlspecialchars($row['phone_number']) . "</td>
                         <td>{$row['added_by']}</td>
                         <td>{$row['last_updated']}</td>
                         <td class='action-links'>
