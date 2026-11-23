@@ -5,8 +5,9 @@ require 'db.php';
 $customer_id = $_GET['customer_id']; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $stmt = $pdo->prepare("INSERT INTO cat_cafe_reservations (customer_id, reservation_date, number_of_guest, notes, added_by) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$customer_id, $_POST['reservation_date'], $_POST['number_of_guest'], $_POST['notes'], $_SESSION['username']]);
+    $stmt->execute([$customer_id, $_POST['reservation_date'], $_POST['number_of_guest'], $_POST['notes'], $_SESSION['user_id']]);
     header("Location: view_reservations.php?customer_id=" . $customer_id);
     exit();
 }

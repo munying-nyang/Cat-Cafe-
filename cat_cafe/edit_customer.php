@@ -5,9 +5,8 @@ require 'db.php';
 $id = $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // OVERWRITES added_by with the current user's username
     $stmt = $pdo->prepare("UPDATE cat_cafe_customers SET full_name=?, email=?, phone_number=?, added_by=? WHERE customer_id=?");
-    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $_SESSION['username'], $id]);
+    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $_SESSION['user_id'], $id]);
     header("Location: index.php");
     exit();
 }

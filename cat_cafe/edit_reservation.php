@@ -7,9 +7,8 @@ if (!isset($_GET['id'])) { header("Location: index.php"); exit(); }
 $id = $_GET['id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // OVERWRITES added_by with the current user's username
     $stmt = $pdo->prepare("UPDATE cat_cafe_reservations SET reservation_date=?, number_of_guest=?, notes=?, added_by=? WHERE reservation_id=?");
-    $stmt->execute([$_POST['reservation_date'], $_POST['number_of_guest'], $_POST['notes'], $_SESSION['username'], $id]);
+    $stmt->execute([$_POST['reservation_date'], $_POST['number_of_guest'], $_POST['notes'], $_SESSION['user_id'], $id]);
     
     $stmt = $pdo->prepare("SELECT customer_id FROM cat_cafe_reservations WHERE reservation_id = ?");
     $stmt->execute([$id]);

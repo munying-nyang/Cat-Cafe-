@@ -4,8 +4,9 @@ if (!isset($_SESSION['user_id'])) { header("Location: login.php"); exit(); }
 require 'db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     $stmt = $pdo->prepare("INSERT INTO cat_cafe_customers (full_name, email, phone_number, added_by) VALUES (?, ?, ?, ?)");
-    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $_SESSION['username']]);
+    $stmt->execute([$_POST['full_name'], $_POST['email'], $_POST['phone_number'], $_SESSION['user_id']]);
     header("Location: index.php");
     exit();
 }
